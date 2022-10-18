@@ -16,6 +16,17 @@ function App() {
     "rendimiento",
     "ahorcado",
   ];
+
+  const wordToGuess =
+    randomWords[Math.floor(Math.random() * randomWords.length)];
+
+  const getTotalErrors = () =>
+    Array.from(usedLetters).filter((letter) => !wordToGuess.includes(letter))
+      .length;
+
+  const checkIsWon = () =>
+    wordToGuess.split("").every((letter) => usedLetters.has(letter));
+
   const alphabetLetters = "abcdefghijklmnñopqrstuvwxyz";
 
   const addLetterToUsedLetters = (letterToAdd) => {
@@ -30,7 +41,7 @@ function App() {
           <UsedLetters usedLetters={usedLetters} />
           <Hangman totalErrors={totalErrors} />
         </div>
-        <GuessLetters wordToGuess={randomWords[0]} usedLetters={usedLetters} />
+        <GuessLetters wordToGuess={wordToGuess} usedLetters={usedLetters} />
         <Result totalErrors={totalErrors} />
         <Letters
           alphabetLetters={alphabetLetters}
