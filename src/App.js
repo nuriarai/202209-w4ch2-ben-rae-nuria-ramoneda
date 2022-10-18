@@ -27,7 +27,7 @@ function App() {
     <>
       <div className="container">
         <div className="main-container">
-          <UsedLetters usedLetter={usedLetters} />
+          <UsedLetters usedLetters={usedLetters} />
           <Hangman totalErrors={totalErrors} />
         </div>
         <GuessLetters randomWord={randomWords[0]} />
