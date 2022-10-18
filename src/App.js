@@ -7,7 +7,8 @@ import UsedLetters from "./components/UsedLetters/UsedLetters";
 
 function App() {
   const [usedLetters, setUsedLetters] = useState(new Set([]));
-  const [totalErrors] = useState(0);
+  const [totalErrors, setTotalErrors] = useState(0);
+  const [isWon, setIsWon] = useState(false);
 
   const randomWords = [
     "arbol",
@@ -16,11 +17,24 @@ function App() {
     "rendimiento",
     "ahorcado",
   ];
+
+  const randomIndex = Math.floor(Math.random() * randomWords.length);
+  const [wordToGuess] = useState(randomWords[randomIndex]);
+
+  const getTotalErrors = () =>
+    Array.from(usedLetters).filter((letter) => !wordToGuess.includes(letter))
+      .length;
+
+  const checkIsWon = () =>
+    wordToGuess.split("").every((letter) => usedLetters.has(letter));
+
   const alphabetLetters = "abcdefghijklmnñopqrstuvwxyz";
 
   const addLetterToUsedLetters = (letterToAdd) => {
     const newUsedLetters = [...usedLetters, letterToAdd];
     setUsedLetters(new Set(newUsedLetters));
+    setTotalErrors(getTotalErrors());
+    setIsWon(checkIsWon());
   };
 
   return (
@@ -30,8 +44,8 @@ function App() {
           <UsedLetters usedLetters={usedLetters} />
           <Hangman totalErrors={totalErrors} />
         </div>
-        <GuessLetters wordToGuess={randomWords[0]} usedLetters={usedLetters} />
-        <Result totalErrors={totalErrors} />
+        <GuessLetters wordToGuess={wordToGuess} usedLetters={usedLetters} />
+        <Result totalErrors={totalErrors} isWon={isWon} />
         <Letters
           alphabetLetters={alphabetLetters}
           onLetterClick={addLetterToUsedLetters}
