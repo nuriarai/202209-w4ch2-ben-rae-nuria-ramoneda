@@ -5,7 +5,14 @@ import Letters from "./components/Letters/Letters";
 import Result from "./components/Result/Result";
 import UsedLetters from "./components/UsedLetters/UsedLetters";
 
-const randomWords = ["arbol", "camisa", "pantalla", "rendimiento", "ahorcado"];
+const randomWords = [
+  "arbol",
+  "camisa",
+  "pantalla",
+  "rendimiento",
+  "ahorcado",
+  "MaYusCulAs",
+];
 const alphabetLetters = "abcdefghijklmnñopqrstuvwxyz";
 const randomIndex = Math.floor(Math.random() * randomWords.length);
 
@@ -14,8 +21,13 @@ const App = () => {
   const [wordToGuess] = useState(randomWords[randomIndex]);
 
   const getTotalErrors = () =>
-    Array.from(usedLetters).filter((letter) => !wordToGuess.includes(letter))
-      .length;
+    Array.from(usedLetters).filter(
+      (letter) =>
+        !(
+          wordToGuess.includes(letter.toUpperCase()) ||
+          wordToGuess.includes(letter.toLowerCase())
+        )
+    ).length;
 
   const checkIsWon = () =>
     wordToGuess
@@ -32,7 +44,6 @@ const App = () => {
   const addLetterToUsedLetters = (letterToAdd) => {
     const newUsedLetters = [...usedLetters, letterToAdd];
     setUsedLetters(new Set(newUsedLetters));
-    console.log(checkIsWon());
   };
 
   return (
