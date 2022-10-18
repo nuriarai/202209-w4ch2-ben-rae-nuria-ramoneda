@@ -16,7 +16,7 @@ const GuessLetters = ({ wordToGuess, usedLetters }) => {
             key={index}
             className={`guess-letter${!letterIsGuessed ? " empty" : ""}`}
           >
-            {letterIsGuessed && letter}
+            {letterIsGuessed && letter.toUpperCase()}
           </li>
         );
       })}
