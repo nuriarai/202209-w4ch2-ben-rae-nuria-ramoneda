@@ -6,8 +6,8 @@ import Result from "./components/Result/Result";
 import UsedLetters from "./components/UsedLetters/UsedLetters";
 
 function App() {
-  const [usedLetters, setUsedLetters] = useState(new Set());
-  const [totalErrors, setTotalErrors] = useState(0);
+  const [usedLetters] = useState(new Set());
+  const [totalErrors] = useState(0);
 
   const randomWords = [
     "arbol",
@@ -22,11 +22,14 @@ function App() {
     <>
       <div className="container">
         <div className="main-container">
-          <UsedLetters />
-          <Hangman />
+          <UsedLetters usedLetter={usedLetters} />
+          <Hangman totalErrors={totalErrors} />
         </div>
-        <GuessLetters />
-        <Result />
+        <GuessLetters
+          alphabetLetters={alphabetLetters}
+          randomWord={randomWords[0]}
+        />
+        <Result totalErrors={totalErrors} />
         <Letters />
       </div>
     </>
