@@ -6,7 +6,7 @@ import Result from "./components/Result/Result";
 import UsedLetters from "./components/UsedLetters/UsedLetters";
 
 function App() {
-  const [usedLetters] = useState(new Set());
+  const [usedLetters] = useState(new Set([]));
   const [totalErrors] = useState(0);
 
   const randomWords = [
@@ -22,7 +22,7 @@ function App() {
     <>
       <div className="container">
         <div className="main-container">
-          <UsedLetters usedLetter={usedLetters} />
+          <UsedLetters usedLetters={usedLetters} />
           <Hangman totalErrors={totalErrors} />
         </div>
         <GuessLetters
