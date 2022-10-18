@@ -1,6 +1,6 @@
 import "./Result.css";
 
-const Result = () => {
+const Result = ({ totalErrors, isWon }) => {
   return <section className="game-result">You're dead!</section>;
 };
 
