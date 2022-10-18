@@ -1,7 +1,14 @@
 import "./Result.css";
 
 const Result = ({ totalErrors, isWon }) => {
-  return <section className="game-result">You're dead!</section>;
+  let message = "";
+  if (!isWon && totalErrors >= 11) {
+    message = "You're dead!";
+  }
+  if (isWon) {
+    message = "You're alive";
+  }
+  return <section className="game-result">{message}</section>;
 };
 
 export default Result;
