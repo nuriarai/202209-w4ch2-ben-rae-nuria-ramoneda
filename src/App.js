@@ -25,12 +25,9 @@ function App() {
           <UsedLetters usedLetter={usedLetters} />
           <Hangman totalErrors={totalErrors} />
         </div>
-        <GuessLetters
-          alphabetLetters={alphabetLetters}
-          randomWord={randomWords[0]}
-        />
+        <GuessLetters randomWord={randomWords[0]} />
         <Result totalErrors={totalErrors} />
-        <Letters />
+        <Letters alphabetLetters={alphabetLetters} />
       </div>
     </>
   );
