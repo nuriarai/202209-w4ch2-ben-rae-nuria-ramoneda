@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import GuessLetters from "./components/GuessLetters/GuessLetters";
 import Hangman from "./components/Hangman/Hangman";
 import Letters from "./components/Letters/Letters";
@@ -18,7 +18,7 @@ function App() {
   ];
   const alphabetLetters = "abcdefghijklmnñopqrstuvwxyz";
 
-  const handleLetterClick = (letterToAdd) => {
+  const addLetterToUsedLetters = (letterToAdd) => {
     const newUsedLetters = [...usedLetters, letterToAdd];
     setUsedLetters(new Set(newUsedLetters));
   };
@@ -34,7 +34,7 @@ function App() {
         <Result totalErrors={totalErrors} />
         <Letters
           alphabetLetters={alphabetLetters}
-          onLetterClick={handleLetterClick}
+          onLetterClick={addLetterToUsedLetters}
         />
       </div>
     </>
