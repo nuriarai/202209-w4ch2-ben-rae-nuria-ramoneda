@@ -1,13 +1,25 @@
 import "./GuessLetters.css";
 
-const GuessLetters = () => {
+const GuessLetters = ({ wordToGuess, usedLetters }) => {
   return (
     <ul className="guess-letters">
-      <li className="guess-letter empty"></li>
-      <li className="guess-letter">A</li>
-      <li className="guess-letter empty"></li>
-      <li className="guess-letter">A</li>
-      <li className="guess-letter empty"></li>
+      {wordToGuess.split("").map((letter, index) => {
+        let letterIsGuessed;
+        if (
+          usedLetters.has(letter.toLowerCase()) ||
+          usedLetters.has(letter.toUpperCase())
+        ) {
+          letterIsGuessed = true;
+        }
+        return (
+          <li
+            key={index}
+            className={`guess-letter${!letterIsGuessed ? " empty" : ""}`}
+          >
+            {letterIsGuessed && letter.toUpperCase()}
+          </li>
+        );
+      })}
     </ul>
   );
 };
